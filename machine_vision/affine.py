@@ -43,7 +43,7 @@ except Exception:
 img2 = image.Image(size=(320, 240))
 img2.pix_to_ai()
 flag = False
-while 1:
+while True:
     img = sensor.snapshot()
 
     image.warp_affine_ai(img, img2, matrix)

@@ -1,0 +1,51 @@
+#
+# 画像の変化量を積算.
+#
+
+##################################################
+# import
+##################################################
+import sensor, image, time, lcd
+
+# LCDを初期化
+lcd.init()
+# LCDの方向を標準デモアプリの方向へ合わせる
+lcd.direction(lcd.YX_LRUD)
+
+# カメラを初期化
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QQVGA)
+sensor.set_windowing((64, 64))
+sensor.run(True)
+
+# タイマーを初期化
+clock = time.clock()
+
+##################################################
+# main
+##################################################
+x = 0.0
+y = 0.0
+oldImage = sensor.snapshot()
+while True:
+    # Update the FPS clock.
+    clock.tick()
+    # カメラ画像を取得
+    img = sensor.snapshot()
+    # 画像をLCDに描画
+    lcd.display(img)
+    # displacementオブジェクトを取得
+    result = img.find_displacement(oldImage)
+    # 縦横方向の移動量（画像変化量）を取得
+    x += result.x_translation()
+    y += result.y_translation()
+    # 四捨五入
+    x = round(x, 3)
+    y = round(y, 3)
+    # 変数をコピー
+    oldImage = img.copy()
+    # 結果をコンソールに出力
+    print("x: ", x, "y: ", y)
+    print(result)
+    print(clock.fps())
