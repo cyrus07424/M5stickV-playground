@@ -6,9 +6,7 @@
 # import
 ##################################################
 import sensor
-import image
 import lcd
-import time
 
 ##################################################
 # initialize
