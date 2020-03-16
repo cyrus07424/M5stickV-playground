@@ -15,6 +15,7 @@ lcd.direction(lcd.YX_LRUD)
 # カメラを初期化
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
+# センサーサイズのsensor.B64X64は使用不可のため、set_windowingメソッドを利用して取得画像のサイズを64x64に設定する
 sensor.set_framesize(sensor.QQVGA)
 sensor.set_windowing((64, 64))
 sensor.run(True)
