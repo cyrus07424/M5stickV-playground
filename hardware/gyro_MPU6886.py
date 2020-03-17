@@ -73,9 +73,9 @@ def MPU6886_init():
 # MPU6886からデータを取得
 def MPU6886_read():
     accel = i2c.readfrom_mem(MPU6886_ADDRESS, MPU6886_ACCEL_XOUT_H, 6)
-    accel_x = (accel[0] << 8|accel[1])
-    accel_y = (accel[2] << 8|accel[3])
-    accel_z = (accel[4] << 8|accel[5])
+    accel_x = (accel[0] << 8 | accel[1])
+    accel_y = (accel[2] << 8 | accel[3])
+    accel_z = (accel[4] << 8 | accel[5])
     if 32768 < accel_x:
         accel_x = accel_x - 65536
     if 32768 < accel_y:
