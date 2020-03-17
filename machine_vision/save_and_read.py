@@ -5,13 +5,13 @@
 ##################################################
 # import
 ##################################################
-import sensor, lcd, image
+import lcd
+import sensor
+import image
 
 ##################################################
 # initialize
 ##################################################
-print("init")
-
 # LCDを初期化
 lcd.init()
 # LCDの方向を標準デモアプリの方向へ合わせる
@@ -22,8 +22,6 @@ sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
 sensor.set_framesize(sensor.QVGA)
 sensor.run(True)
-
-print("init ok")
 
 ##################################################
 # main
@@ -36,7 +34,7 @@ img = sensor.snapshot()
 
 # 画像を保存
 print("save image")
-img.save(path)
+img.save(path, quality = 95)
 
 # 画像を読み込み
 print("read image")

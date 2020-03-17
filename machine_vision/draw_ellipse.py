@@ -1,12 +1,13 @@
 #
-# 近似色領域を囲む線を描画.
+# 楕円を描画.
+# ドキュメントに載っていない隠しメソッド?
 #
 
 ##################################################
 # import
 ##################################################
 import lcd
-import sensor
+import image
 
 ##################################################
 # initialize
@@ -16,19 +17,14 @@ lcd.init()
 # LCDの方向を標準デモアプリの方向へ合わせる
 lcd.direction(lcd.YX_LRUD)
 
-# カメラを初期化
-sensor.reset()
-sensor.set_pixformat(sensor.RGB565)
-sensor.set_framesize(sensor.QVGA)
-sensor.run(True)
-
 ##################################################
 # main
 ##################################################
-while True:
-    # カメラ画像を取得
-    img = sensor.snapshot()
-    # 近似色領域を囲む線を描画
-    img.dilate(1)
-    # 画像をLCDに描画
-    lcd.display(img)
+# 画像を作成
+img = image.Image()
+
+# 画像に対して楕円を描画(x, y, x方向半径, y方向半径)
+img.draw_ellipse(img.width() // 2, img.height() // 2, img.width() // 4, img.height() // 4)
+
+# 画像をLCDに描画
+lcd.display(img)

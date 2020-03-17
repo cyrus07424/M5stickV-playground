@@ -5,8 +5,13 @@
 ##################################################
 # import
 ##################################################
-import sensor, image, time, lcd
+import lcd
+import sensor
+import image
 
+##################################################
+# initialize
+##################################################
 # LCDを初期化
 lcd.init()
 # LCDの方向を標準デモアプリの方向へ合わせる
@@ -20,9 +25,6 @@ sensor.set_framesize(sensor.QQVGA)
 sensor.set_windowing((64, 64))
 sensor.run(True)
 
-# タイマーを初期化
-clock = time.clock()
-
 ##################################################
 # main
 ##################################################
@@ -30,8 +32,6 @@ x = 0.0
 y = 0.0
 oldImage = sensor.snapshot()
 while True:
-    # Update the FPS clock.
-    clock.tick()
     # カメラ画像を取得
     img = sensor.snapshot()
     # 画像をLCDに描画
@@ -49,4 +49,3 @@ while True:
     # 結果をコンソールに出力
     print("x: ", x, "y: ", y)
     print(result)
-    print(clock.fps())

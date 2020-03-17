@@ -5,8 +5,9 @@
 ##################################################
 # import
 ##################################################
+import lcd
+import sensor
 import image
-import lcd, sensor
 import time
 
 ##################################################
@@ -23,6 +24,9 @@ sensor.set_pixformat(sensor.RGB565)
 sensor.set_framesize(sensor.QQVGA)
 sensor.run(True)
 
+##################################################
+# main
+##################################################
 # 変換行列
 matrix = image.get_affine_transform([(0,0), (240, 0), (240, 240)], [(60,60), (240, 0), (220, 200)])
 print("matrix:")
@@ -30,9 +34,6 @@ print("[{:.02f}, {:.02f}, {:.02f}]".format(matrix[0], matrix[1], matrix[2]))
 print("[{:.02f}, {:.02f}, {:.02f}]".format(matrix[3], matrix[4], matrix[5]))
 print("[{:.02f}, {:.02f}, {:.02f}]".format(matrix[6], matrix[7], matrix[8]))
 
-##################################################
-# main
-##################################################
 # オブジェクトを削除
 try:
     del img

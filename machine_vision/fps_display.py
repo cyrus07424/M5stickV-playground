@@ -5,9 +5,9 @@
 ##################################################
 # import
 ##################################################
+import lcd
 import sensor
 import image
-import lcd
 import time
 
 ##################################################
@@ -23,8 +23,6 @@ sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
 sensor.set_framesize(sensor.QVGA)
 sensor.run(True)
-# 最初の30フレームをスキップする(fps値を安定させるため?)
-sensor.skip_frames(30)
 
 # タイマーを初期化
 clock = time.clock()
@@ -39,7 +37,10 @@ while True:
     img = sensor.snapshot()
     # fpsを取得
     fps = clock.fps()
+    fps_string = "%.2ffps" % fps
     # fpsを描画
-    img.draw_string(100, 100, ("%2.1ffps" %(fps)), color = (0, 128, 0), scale = 2)
+    img.draw_string(img.width() // 4, img.height() // 2, fps_string, color = (0, 128, 0), scale = 2)
     # 画像をLCDに描画
     lcd.display(img)
+    # fpsをコンソールに出力
+    print(fps_string)

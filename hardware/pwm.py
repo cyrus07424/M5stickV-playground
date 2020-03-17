@@ -5,8 +5,8 @@
 ##################################################
 # import
 ##################################################
-from machine import Timer,PWM
 import time
+from machine import Timer,PWM
 from board import board_info
 from fpioa_manager import fm
 

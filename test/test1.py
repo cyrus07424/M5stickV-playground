@@ -5,11 +5,12 @@
 ##################################################
 # import
 ##################################################
-import lcd, image
+import lcd
+import image
+import utime
 from fpioa_manager import fm
 from board import board_info
 from Maix import GPIO
-import utime
 from machine import Timer, PWM
 
 ##################################################
@@ -20,11 +21,13 @@ lcd.init()
 # LCDの方向を標準デモアプリの方向へ合わせる
 lcd.direction(lcd.YX_LRUD)
 
-# LED用のGPIO設定
+# レジスタを設定
 fm.register(board_info.LED_W, fm.fpioa.GPIO3)
 fm.register(board_info.LED_R, fm.fpioa.GPIO4)
 fm.register(board_info.LED_G, fm.fpioa.GPIO5)
 fm.register(board_info.LED_B, fm.fpioa.GPIO6)
+
+# GPIO設定
 led_w = GPIO(GPIO.GPIO3, GPIO.OUT)
 led_r = GPIO(GPIO.GPIO4, GPIO.OUT)
 led_g = GPIO(GPIO.GPIO5, GPIO.OUT)

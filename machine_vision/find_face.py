@@ -5,9 +5,9 @@
 ##################################################
 # import
 ##################################################
+import lcd
 import sensor
 import image
-import lcd
 import KPU as kpu
 
 ##################################################
@@ -34,7 +34,7 @@ task = kpu.load(0x300000)
 anchor = (1.889, 2.5245, 2.9465, 3.94056, 3.99987, 5.3658, 5.155437, 6.92275, 6.718375, 9.01025)
 
 # モデルを初期化
-a = kpu.init_yolo2(task, 0.5, 0.3, 5, anchor)
+kpu.init_yolo2(task, 0.5, 0.3, 5, anchor)
 
 while(True):
     # カメラ画像を取得
@@ -47,9 +47,9 @@ while(True):
         for i in code:
             print(i)
             # 矩形を描画
-            a = img.draw_rectangle(i.rect())
+            img.draw_rectangle(i.rect())
     # 画像をLCDに描画
-    a = lcd.display(img)
+    lcd.display(img)
 
 # モデルを開放
-a = kpu.deinit(task)
+kpu.deinit(task)
