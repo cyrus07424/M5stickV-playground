@@ -1,6 +1,6 @@
 #
-# カートゥーンフィルタ.
-# https://docs.openmv.io/library/omv.image.html#image.image.cartoon
+# 明度を消去.
+# https://docs.openmv.io/library/omv.image.html#image.image.illuminvar
 #
 
 ##################################################
@@ -29,7 +29,7 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # カートゥーンフィルタ
-    img.cartoon(seed_threshold = 0.05, floating_thresholds = 0.05)
+    # 明度を消去
+    img.illuminvar()
     # 画像をLCDに描画
     lcd.display(img)

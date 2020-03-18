@@ -1,6 +1,6 @@
 #
-# カートゥーンフィルタ.
-# https://docs.openmv.io/library/omv.image.html#image.image.cartoon
+# Local Binary Patternを検出.
+# https://docs.openmv.io/library/omv.image.html#image.image.find_lbp
 #
 
 ##################################################
@@ -8,6 +8,7 @@
 ##################################################
 import lcd
 import sensor
+import image
 
 ##################################################
 # initialize
@@ -19,8 +20,9 @@ lcd.direction(lcd.YX_LRUD)
 
 # カメラを初期化
 sensor.reset()
-sensor.set_pixformat(sensor.RGB565)
-sensor.set_framesize(sensor.QVGA)
+# 画像フォーマットはグレースケールのみ対応
+sensor.set_pixformat(sensor.GRAYSCALE)
+sensor.set_framesize(sensor.QQVGA)
 sensor.run(1)
 
 ##################################################
@@ -29,7 +31,12 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # カートゥーンフィルタ
-    img.cartoon(seed_threshold = 0.05, floating_thresholds = 0.05)
+    # Local Binary Patternを検出
+    res = img.find_lbp((0, 0, img.width(), img.height()))
+    # 結果が存在する場合
+    if res:
+        print(i)
+        # 矩形を描画
+        img.draw_rectangle(i, thickness = 2)
     # 画像をLCDに描画
     lcd.display(img)

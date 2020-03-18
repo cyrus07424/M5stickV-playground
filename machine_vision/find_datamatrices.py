@@ -1,6 +1,6 @@
 #
-# カートゥーンフィルタ.
-# https://docs.openmv.io/library/omv.image.html#image.image.cartoon
+# Data Matrixを検出.
+# https://docs.openmv.io/library/omv.image.html#image.image.find_datamatrices
 #
 
 ##################################################
@@ -29,7 +29,14 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # カートゥーンフィルタ
-    img.cartoon(seed_threshold = 0.05, floating_thresholds = 0.05)
+    # Data Matrixを検出
+    res = img.find_datamatrices()
+    # 結果が存在する場合
+    if res:
+        # 全ての結果に対して実行
+        for i in res:
+            print(i)
+            # 矩形を描画
+            img.draw_rectangle(i.x(), i.y(), i.w(), i.h(), color = (255, 0, 0), thickness = 2)
     # 画像をLCDに描画
     lcd.display(img)

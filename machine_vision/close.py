@@ -1,6 +1,7 @@
 #
-# カートゥーンフィルタ.
-# https://docs.openmv.io/library/omv.image.html#image.image.cartoon
+# クロージング処理.
+# https://docs.openmv.io/library/omv.image.html#image.image.close
+# http://labs.eecs.tottori-u.ac.jp/sd/Member/oyamada/OpenCV/html/py_tutorials/py_imgproc/py_morphological_ops/py_morphological_ops.html#closing
 #
 
 ##################################################
@@ -29,7 +30,7 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # カートゥーンフィルタ
-    img.cartoon(seed_threshold = 0.05, floating_thresholds = 0.05)
+    # クロージング処理
+    img.close(3)
     # 画像をLCDに描画
     lcd.display(img)

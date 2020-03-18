@@ -1,5 +1,6 @@
 #
 # 緑色の物体を検出.
+# https://docs.openmv.io/library/omv.image.html#image.image.find_blobs
 #
 
 ##################################################

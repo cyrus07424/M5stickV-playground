@@ -1,6 +1,6 @@
 #
-# カートゥーンフィルタ.
-# https://docs.openmv.io/library/omv.image.html#image.image.cartoon
+# AprilTagを検出.
+# https://docs.openmv.io/library/omv.image.html#image.image.find_apriltags
 #
 
 ##################################################
@@ -20,7 +20,8 @@ lcd.direction(lcd.YX_LRUD)
 # カメラを初期化
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
-sensor.set_framesize(sensor.QVGA)
+# QVGAは最大サポート解像度を超えるためQQVGAを設定
+sensor.set_framesize(sensor.QQVGA)
 sensor.run(1)
 
 ##################################################
@@ -29,7 +30,16 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # カートゥーンフィルタ
-    img.cartoon(seed_threshold = 0.05, floating_thresholds = 0.05)
+    # AprilTagを検出
+    res = img.find_apriltags()
+    # 結果が存在する場合
+    if res:
+        # 全ての結果に対して実行
+        for i in res:
+            print(i)
+            # 矩形を描画
+            img.draw_rectangle(i.x(), i.y(), i.w(), i.h(), color = (255, 0, 0), thickness = 2)
+            # 十字を描画
+            img.draw_cross(i.cx(), i.cy(), color = (255, 0, 0), thickness = 2)
     # 画像をLCDに描画
     lcd.display(img)

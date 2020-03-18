@@ -1,6 +1,5 @@
 #
-# カートゥーンフィルタ.
-# https://docs.openmv.io/library/omv.image.html#image.image.cartoon
+# 線分を検出.
 #
 
 ##################################################
@@ -20,7 +19,7 @@ lcd.direction(lcd.YX_LRUD)
 # カメラを初期化
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
-sensor.set_framesize(sensor.QVGA)
+sensor.set_framesize(sensor.QQVGA)
 sensor.run(1)
 
 ##################################################
@@ -29,7 +28,14 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # カートゥーンフィルタ
-    img.cartoon(seed_threshold = 0.05, floating_thresholds = 0.05)
+    # 線分を検出
+    res = img.find_line_segments()
+    # 結果が存在する場合
+    if res:
+        # 全ての結果に対して実行
+        for i in res:
+            print(i)
+            # 直線を描画
+            img.draw_line(i.x1(), i.y1(), i.x2(), i.y2(), color = (255, 0, 0), thickness = 2)
     # 画像をLCDに描画
     lcd.display(img)
