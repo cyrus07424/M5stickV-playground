@@ -39,7 +39,7 @@ def play_sound(filename):
         player.volume(100)
         # 再生情報を取得
         wav_info = player.play_process(wav_dev)
-        wav_dev.channel_config(wav_dev.CHANNEL_1, I2S.TRANSMITTER,resolution = I2S.RESOLUTION_16_BIT, align_mode = I2S.STANDARD_MODE)
+        wav_dev.channel_config(wav_dev.CHANNEL_1, I2S.TRANSMITTER, resolution = I2S.RESOLUTION_16_BIT, align_mode = I2S.STANDARD_MODE)
         wav_dev.set_sample_rate(wav_info[1])
         # 再生
         while True:

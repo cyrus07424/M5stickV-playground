@@ -11,7 +11,7 @@ from board import board_info
 from fpioa_manager import fm
 
 ##################################################
-# initialize
+# main
 ##################################################
 # タイマー設定
 tim = Timer(Timer.TIMER0, Timer.CHANNEL0, mode = Timer.MODE_PWM)

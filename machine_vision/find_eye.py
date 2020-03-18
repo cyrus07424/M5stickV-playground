@@ -13,7 +13,7 @@ import sensor
 ##################################################
 # LCDを初期化
 lcd.init()
-# LCDの方向を標準デモアプリの方向へ合わせる
+# LCDの方向を設定
 lcd.direction(lcd.YX_LRUD)
 
 # カメラを初期化
@@ -21,7 +21,7 @@ sensor.reset()
 # 画像フォーマットはグレースケールのみ対応
 sensor.set_pixformat(sensor.GRAYSCALE)
 sensor.set_framesize(sensor.QQVGA)
-sensor.run(True)
+sensor.run(1)
 
 ##################################################
 # main

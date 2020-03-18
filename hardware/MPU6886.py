@@ -14,8 +14,8 @@ from fpioa_manager import *
 ##################################################
 # constants
 ##################################################
-MPU6886_ADDRESS             =   0x68
-MPU6886_WHOAMI              =   0x75
+MPU6886_ADDRESS             =  0x68
+MPU6886_WHOAMI              =  0x75
 MPU6886_ACCEL_INTEL_CTRL    =  0x69
 MPU6886_SMPLRT_DIV          =  0x19
 MPU6886_INT_PIN_CFG         =  0x37
@@ -37,7 +37,7 @@ MPU6886_FIFO_EN             =  0x23
 ##################################################
 # LCDを初期化
 lcd.init()
-# LCDの方向を標準デモアプリの方向へ合わせる
+# LCDの方向を設定
 lcd.direction(lcd.YX_LRUD)
 
 # I2Cデバイスを設定
@@ -71,18 +71,18 @@ def MPU6886_init():
     write_i2c(MPU6886_INT_ENABLE, 0x01)
 
 # MPU6886からデータを取得
-def MPU6886_read():
-    accel = i2c.readfrom_mem(MPU6886_ADDRESS, MPU6886_ACCEL_XOUT_H, 6)
-    accel_x = (accel[0] << 8 | accel[1])
-    accel_y = (accel[2] << 8 | accel[3])
-    accel_z = (accel[4] << 8 | accel[5])
-    if 32768 < accel_x:
-        accel_x = accel_x - 65536
-    if 32768 < accel_y:
-        accel_y = accel_y - 65536
-    if 32768 < accel_z:
-        accel_z = accel_z - 65536
-    return accel_x, accel_y, accel_z
+def MPU6886_read(address):
+    value = i2c.readfrom_mem(MPU6886_ADDRESS, address, 6)
+    value_x = (value[0] << 8 | value[1])
+    value_y = (value[2] << 8 | value[3])
+    value_z = (value[4] << 8 | value[5])
+    if 32768 < value_x:
+        value_x = value_x - 65536
+    if 32768 < value_y:
+        value_y = value_y - 65536
+    if 32768 < value_z:
+        value_z = value_z - 65536
+    return value_x, value_y, value_z
 
 ##################################################
 # main
@@ -91,18 +91,26 @@ def MPU6886_read():
 MPU6886_init()
 
 # 加速度のスケールを計算
-aRes_multiplier = 8.0;
-aRes = aRes_multiplier / 32768.0;
+aRes = 8.0 / 32768.0;
+
+# 角速度のスケールを計算
+gRes = 2000.0 / 32768.0;
 
 while True:
     # MPU6886からデータを取得
-    x, y, z = MPU6886_read()
-    # 加速度の値を計算
-    accel_array = [x * aRes, y * aRes, z * aRes]
-    # 加速度の値をコンソールに出力
-    print(accel_array)
-    # 加速度の値をのLCDに描画
+    accel_x, accel_y, accel_z = MPU6886_read(MPU6886_ACCEL_XOUT_H)
+    gyro_x, gyro_y, gyro_z = MPU6886_read(MPU6886_GYRO_XOUT_H)
+    # スケールを反映した値を計算
+    accel_array = [accel_x * aRes, accel_y * aRes, accel_z * aRes]
+    gyro_array = [gyro_x * gRes, gyro_y * gRes, gyro_z * gRes]
+    # 値をコンソールに出力
+    print("accel_array: ", accel_array)
+    print("gyro_array: ", gyro_array)
+    # 値をLCDに描画
     lcd.draw_string(10, 10, "MPU6886")
-    lcd.draw_string(20, 50, "x: %+.10f" % accel_array[0])
-    lcd.draw_string(20, 70, "y: %+.10f" % accel_array[1])
-    lcd.draw_string(20, 90, "z: %+.10f" % accel_array[2])
+    lcd.draw_string(20, 35, "accel_x: %+.10f" % accel_array[0])
+    lcd.draw_string(20, 50, "accel_y: %+.10f" % accel_array[1])
+    lcd.draw_string(20, 65, "accel_z: %+.10f" % accel_array[2])
+    lcd.draw_string(20, 80, "gyro_x: %+.10f" % gyro_array[0])
+    lcd.draw_string(20, 95, "gyro_y: %+.10f" % gyro_array[1])
+    lcd.draw_string(20, 110, "gyro_z: %+.10f" % gyro_array[2])

@@ -21,7 +21,7 @@ clock = time.clock()                # Create a clock object to track the FPS.
 ##################################################
 # main
 ##################################################
-while(True):
+while True:
     clock.tick()                    # Update the FPS clock.
     img = sensor.snapshot()         # Take a picture and return the image.
     lcd.display(img)                # Display on LCD

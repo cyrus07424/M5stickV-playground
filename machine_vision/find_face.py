@@ -15,14 +15,14 @@ import KPU as kpu
 ##################################################
 # LCDを初期化
 lcd.init()
-# LCDの方向を標準デモアプリの方向へ合わせる
+# LCDの方向を設定
 lcd.direction(lcd.YX_LRUD)
 
 # カメラを初期化
 sensor.reset()
 sensor.set_pixformat(sensor.RGB565)
 sensor.set_framesize(sensor.QVGA)
-sensor.run(True)
+sensor.run(1)
 
 ##################################################
 # main
@@ -36,7 +36,7 @@ anchor = (1.889, 2.5245, 2.9465, 3.94056, 3.99987, 5.3658, 5.155437, 6.92275, 6.
 # モデルを初期化
 kpu.init_yolo2(task, 0.5, 0.3, 5, anchor)
 
-while(True):
+while True:
     # カメラ画像を取得
     img = sensor.snapshot()
     # 推論を実行

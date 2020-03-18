@@ -18,7 +18,7 @@ from machine import Timer, PWM
 ##################################################
 # LCDを初期化
 lcd.init()
-# LCDの方向を標準デモアプリの方向へ合わせる
+# LCDの方向を設定
 lcd.direction(lcd.YX_LRUD)
 
 # レジスタを設定

@@ -14,7 +14,7 @@ import image
 ##################################################
 # LCDを初期化
 lcd.init()
-# LCDの方向を標準デモアプリの方向へ合わせる
+# LCDの方向を設定
 lcd.direction(lcd.YX_LRUD)
 
 # カメラを初期化
@@ -23,7 +23,7 @@ sensor.set_pixformat(sensor.RGB565)
 # センサーサイズのsensor.B64X64は使用不可のため、set_windowingメソッドを利用して取得画像のサイズを64x64に設定する
 sensor.set_framesize(sensor.QQVGA)
 sensor.set_windowing((64, 64))
-sensor.run(True)
+sensor.run(1)
 
 ##################################################
 # main
