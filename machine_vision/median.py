@@ -1,5 +1,5 @@
 #
-# ヒストグラム平坦化.
+# 中央値フィルタ.
 #
 
 ##################################################
@@ -28,7 +28,7 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # ヒストグラム平坦化
-    img.histeq(adaptive = True, clip_limit = 3)
+    # 中央値フィルタ
+    img.median(1, percentile = 0.5)
     # 画像をLCDに描画
     lcd.display(img)

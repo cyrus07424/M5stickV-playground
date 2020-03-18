@@ -1,5 +1,6 @@
 #
-# ヒストグラム平坦化.
+# 直交座標から対数極座標へ変換.
+# https://docs.openmv.io/library/omv.image.html#image.image.logpolar
 #
 
 ##################################################
@@ -28,7 +29,7 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # ヒストグラム平坦化
-    img.histeq(adaptive = True, clip_limit = 3)
+    # 直交座標から対数極座標へ変換(reverse = Trueで逆変換)
+    img.logpolar(reverse = False)
     # 画像をLCDに描画
     lcd.display(img)

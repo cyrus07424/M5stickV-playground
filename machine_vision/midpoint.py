@@ -1,5 +1,5 @@
 #
-# 中央値フィルタ.
+# 中心点フィルタ.
 #
 
 ##################################################
@@ -28,7 +28,7 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # 中央値フィルタ
-    img.midpoint(1)
+    # 中心点フィルタ
+    img.midpoint(1, bias = 0.5)
     # 画像をLCDに描画
     lcd.display(img)

@@ -1,5 +1,6 @@
 #
-# ヒストグラム平坦化.
+# レンズ補正.
+# https://docs.openmv.io/library/omv.image.html#image.image.lens_corr
 #
 
 ##################################################
@@ -28,7 +29,7 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # ヒストグラム平坦化
-    img.histeq(adaptive = True, clip_limit = 3)
+    # レンズ補正
+    img.lens_corr(strength = 1.8, zoom = 0.8)
     # 画像をLCDに描画
     lcd.display(img)

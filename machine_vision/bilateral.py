@@ -29,6 +29,6 @@ while True:
     # カメラ画像を取得
     img = sensor.snapshot()
     # バイラテラルフィルタ
-    img.bilateral(1)
+    img.bilateral(3, color_sigma = 0.1, space_sigma = 1)
     # 画像をLCDに描画
     lcd.display(img)

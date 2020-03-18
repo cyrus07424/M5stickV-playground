@@ -1,5 +1,6 @@
 #
-# ヒストグラム平坦化.
+# ガンマ補正.
+# https://docs.openmv.io/library/omv.image.html#image.image.gamma_corr
 #
 
 ##################################################
@@ -28,7 +29,7 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # ヒストグラム平坦化
-    img.histeq(adaptive = True, clip_limit = 3)
+    # ガンマ補正
+    img.gamma_corr(gamma = 0.5, contrast = 1.0, brightness = 0.0)
     # 画像をLCDに描画
     lcd.display(img)

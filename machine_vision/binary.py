@@ -1,5 +1,6 @@
 #
-# ヒストグラム平坦化.
+# 二値化.
+# https://docs.openmv.io/library/omv.image.html#image.image.binary
 #
 
 ##################################################
@@ -25,10 +26,13 @@ sensor.run(1)
 ##################################################
 # main
 ##################################################
+# しきい値
+thresholds = (90, 100, -128, 127, -128, 127)
+
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # ヒストグラム平坦化
-    img.histeq(adaptive = True, clip_limit = 3)
+    # 二値化
+    img.binary([thresholds], invert = False, zero = True)
     # 画像をLCDに描画
     lcd.display(img)

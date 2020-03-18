@@ -1,5 +1,5 @@
 #
-# ヒストグラム平坦化.
+# カートゥーンフィルタ.
 #
 
 ##################################################
@@ -28,7 +28,7 @@ sensor.run(1)
 while True:
     # カメラ画像を取得
     img = sensor.snapshot()
-    # ヒストグラム平坦化
-    img.histeq(adaptive = True, clip_limit = 3)
+    # カートゥーンフィルタ
+    img.cartoon(seed_threshold = 0.05, floating_thresholds = 0.05)
     # 画像をLCDに描画
     lcd.display(img)
