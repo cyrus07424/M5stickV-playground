@@ -35,5 +35,15 @@ while True:
         print(i)
         # 矩形を描画
         img.draw_rectangle(i.x(), i.y(), i.w(), i.h(), color = (255, 0, 0), thickness = 2)
+        # 四隅の座標に対して実行
+        for p in i.corners():
+            # 円を描画
+            img.draw_circle(p[0], p[1], 5, color = (0, 255, 0))
+        # 四隅を繋ぐ辺に対して実行
+        for j in range(4):
+            p1 = i.corners()[j]
+            p2 = i.corners()[(j + 1) % 4]
+            # 直線を描画
+            img.draw_line(p1[0], p1[1], p2[0], p2[1], color = (0, 0, 255))
     # 画像をLCDに描画
     lcd.display(img)
