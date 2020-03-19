@@ -31,12 +31,10 @@ while True:
     img = sensor.snapshot()
     # バーコードを検出
     res = img.find_barcodes()
-    # 結果が存在する場合
-    if res:
-        # 全ての結果に対して実行
-        for i in res:
-            print(i)
-            # 矩形を描画
-            img.draw_rectangle(i.x(), i.y(), i.w(), i.h(), color = (255, 0, 0), thickness = 2)
+    # 全ての結果に対して実行
+    for i in res:
+        print(i)
+        # 矩形を描画
+        img.draw_rectangle(i.x(), i.y(), i.w(), i.h(), color = (255, 0, 0), thickness = 2)
     # 画像をLCDに描画
     lcd.display(img)

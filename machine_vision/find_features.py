@@ -40,16 +40,14 @@ while True:
     img = sensor.snapshot()
     # 特徴を検出
     res = img.find_features(cascade, threshold = 0.5, scale = 1.5)
-    # 結果が存在する場合
-    if res:
-        # 全ての結果に対して実行
-        for i in res:
-            print(i)
-            # 矩形を描画
-            img.draw_rectangle(i, thickness = 2)
-            # 瞳を検出
-            iris = img.find_eye(i)
-            # 十字を描画
-            img.draw_cross(iris[0], iris[1])
+    # 全ての結果に対して実行
+    for i in res:
+        print(i)
+        # 矩形を描画
+        img.draw_rectangle(i, thickness = 2)
+        # 瞳を検出
+        iris = img.find_eye(i)
+        # 十字を描画
+        img.draw_cross(iris[0], iris[1])
     # 画像をLCDに描画
     lcd.display(img)

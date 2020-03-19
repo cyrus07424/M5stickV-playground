@@ -35,8 +35,7 @@ while True:
     res = img.find_keypoints()
     # 結果が存在する場合
     if res:
-        print(i)
-        # 矩形を描画
-        img.draw_rectangle(i, thickness = 2)
+        print(r)
+        # TODO
     # 画像をLCDに描画
     lcd.display(img)

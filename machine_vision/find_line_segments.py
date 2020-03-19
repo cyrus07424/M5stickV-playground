@@ -1,5 +1,7 @@
 #
 # 線分を検出.
+# (検出件数が多いとフリーズする).
+# https://docs.openmv.io/library/omv.image.html#image.image.find_line_segments
 #
 
 ##################################################
@@ -30,12 +32,10 @@ while True:
     img = sensor.snapshot()
     # 線分を検出
     res = img.find_line_segments()
-    # 結果が存在する場合
-    if res:
-        # 全ての結果に対して実行
-        for i in res:
-            print(i)
-            # 直線を描画
-            img.draw_line(i.x1(), i.y1(), i.x2(), i.y2(), color = (255, 0, 0), thickness = 2)
+    # 全ての結果に対して実行
+    for i in res:
+        print(i)
+        # 直線を描画
+        img.draw_line(i.x1(), i.y1(), i.x2(), i.y2(), color = (255, 0, 0), thickness = 2)
     # 画像をLCDに描画
     lcd.display(img)

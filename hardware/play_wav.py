@@ -59,9 +59,9 @@ def play_sound(filename):
 file_name = "/flash/ding.wav"
 try:
     while True:
-            # 音声ファイルを再生
-            play_sound(file_name)
-            # 1秒待機
-            time.sleep(1)
+        # 音声ファイルを再生
+        play_sound(file_name)
+        # 1秒待機
+        time.sleep(1)
 except:
     sys.exit()

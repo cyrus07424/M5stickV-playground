@@ -40,14 +40,14 @@ while True:
     # カメラ画像を取得
     img = sensor.snapshot()
     # 推論を実行
-    code = kpu.run_yolo2(task, img)
+    res = kpu.run_yolo2(task, img)
     # 結果が存在する場合
-    if code:
+    if res:
         # 全ての結果に対して実行
-        for i in code:
+        for i in res:
             print(i)
             # 矩形を描画
-            img.draw_rectangle(i.rect())
+            img.draw_rectangle(i.rect(), color = (255, 0, 0), thickness = 2)
     # 画像をLCDに描画
     lcd.display(img)
 
