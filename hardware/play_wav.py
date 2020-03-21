@@ -21,7 +21,8 @@ fm.register(board_info.SPK_LRCLK, fm.fpioa.I2S0_WS)
 
 # GPIO設定
 spk_sd = GPIO(GPIO.GPIO0, GPIO.OUT)
-# GPIOを有効化
+
+# スピーカーを有効化
 spk_sd.value(1)
 
 # 再生デバイスを設定
@@ -56,11 +57,11 @@ def play_sound(filename):
 # main
 ##################################################
 # 再生する音声ファイルのパス
-file_name = "/flash/ding.wav"
+filename = "/flash/ding.wav"
 try:
     while True:
         # 音声ファイルを再生
-        play_sound(file_name)
+        play_sound(filename)
         # 1秒待機
         time.sleep(1)
 except:

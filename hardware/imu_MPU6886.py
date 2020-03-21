@@ -7,30 +7,27 @@
 ##################################################
 import lcd
 from machine import I2C
-from Maix import GPIO
-from board import board_info
-from fpioa_manager import *
 
 ##################################################
 # constants
 ##################################################
-MPU6886_ADDRESS             =  0x68
-MPU6886_WHOAMI              =  0x75
-MPU6886_ACCEL_INTEL_CTRL    =  0x69
-MPU6886_SMPLRT_DIV          =  0x19
-MPU6886_INT_PIN_CFG         =  0x37
-MPU6886_INT_ENABLE          =  0x38
-MPU6886_ACCEL_XOUT_H        =  0x3B
-MPU6886_TEMP_OUT_H          =  0x41
-MPU6886_GYRO_XOUT_H         =  0x43
-MPU6886_USER_CTRL           =  0x6A
-MPU6886_PWR_MGMT_1          =  0x6B
-MPU6886_PWR_MGMT_2          =  0x6C
-MPU6886_CONFIG              =  0x1A
-MPU6886_GYRO_CONFIG         =  0x1B
-MPU6886_ACCEL_CONFIG        =  0x1C
-MPU6886_ACCEL_CONFIG2       =  0x1D
-MPU6886_FIFO_EN             =  0x23
+MPU6886_ADDRESS             = 0x68
+MPU6886_WHOAMI              = 0x75
+MPU6886_ACCEL_INTEL_CTRL    = 0x69
+MPU6886_SMPLRT_DIV          = 0x19
+MPU6886_INT_PIN_CFG         = 0x37
+MPU6886_INT_ENABLE          = 0x38
+MPU6886_ACCEL_XOUT_H        = 0x3B
+MPU6886_TEMP_OUT_H          = 0x41
+MPU6886_GYRO_XOUT_H         = 0x43
+MPU6886_USER_CTRL           = 0x6A
+MPU6886_PWR_MGMT_1          = 0x6B
+MPU6886_PWR_MGMT_2          = 0x6C
+MPU6886_CONFIG              = 0x1A
+MPU6886_GYRO_CONFIG         = 0x1B
+MPU6886_ACCEL_CONFIG        = 0x1C
+MPU6886_ACCEL_CONFIG2       = 0x1D
+MPU6886_FIFO_EN             = 0x23
 
 ##################################################
 # initialize

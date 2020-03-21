@@ -20,7 +20,7 @@ def func(name):
 # main
 ##################################################
 # スレッドを作成
-# M5stiackVは2コアのため3スレッド以上の同時実行を行うと実行順序のばらつきが大きくなる
+# M5stickVは2コアのため3スレッド以上の同時実行を行うと実行順序のばらつきが大きくなる
 _thread.start_new_thread(func,("1",))
 _thread.start_new_thread(func,("2",))
 _thread.start_new_thread(func,("3",))
