@@ -19,7 +19,7 @@ f = open(filename, "w")
 # ファイルに内容を書き込み
 f.write("Hello M5stickV!")
 
-#　ファイルポインタを閉じる
+# ファイルポインタを閉じる
 f.close()
 
 # ファイルポインタを開く

@@ -41,7 +41,7 @@ try:
 except Exception:
     pass
 
-img2 = image.Image(size=(320, 240))
+img2 = image.Image(size = (320, 240))
 img2.pix_to_ai()
 flag = False
 while True:
