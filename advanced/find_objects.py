@@ -35,7 +35,7 @@ while True:
     # 輪郭を検出
     img.find_edges(image.EDGE_SIMPLE, threshold = (100, 255))
     # クロージング処理
-    img.close(3)    
+    img.close(3)
 
     # TODO
 
